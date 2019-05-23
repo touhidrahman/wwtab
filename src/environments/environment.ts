@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyCBkLRDzYSwD05ci_sSttQ7AbwAaiWoHfc",
+    authDomain: "wwtabapp.firebaseapp.com",
+    databaseURL: "https://wwtabapp.firebaseio.com",
+    projectId: "wwtabapp",
+    storageBucket: "wwtabapp.appspot.com",
+    messagingSenderId: "862151947581",
+    appId: "1:862151947581:web:8c2d8d1ec38830ef"
+  }
 };
 
 /*
