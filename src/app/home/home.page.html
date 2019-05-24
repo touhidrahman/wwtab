@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let news of newsList">
+  <ion-card *ngFor="let news of newsService.data | async">
     <ion-card-content>
       <ion-card-title>{{ news.headline }}</ion-card-title>
     </ion-card-content>

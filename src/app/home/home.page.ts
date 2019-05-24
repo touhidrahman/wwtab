@@ -8,17 +8,20 @@ import { NewsService, News } from '../services/news.service';
 })
 export class HomePage implements OnInit {
 
-  newsList: Array<News>;
-  page = 1;
-
-  constructor(private newsService: NewsService) { }
+  constructor(public newsService: NewsService) { }
 
   ngOnInit() {
-    this.newsService.getNewsList().subscribe(res => this.newsList = res);
+    this.newsService.init({ prepend: false });
   }
 
   loadNews(event): void {
+    this.newsService.more();
 
+    this.newsService.loading.subscribe(loading => {
+      if (!loading) {
+        event.target.complete();
+      }
+    })
   }
 
 }
