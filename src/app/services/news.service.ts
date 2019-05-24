@@ -6,8 +6,12 @@ import { map } from 'rxjs/operators';
 export interface News {
   url: string;
   headline?: string;
+  excerpt?: string;
   source?: string;
+  iconUrl?: string;
+  imageUrl?: string;
   country?: string;
+  tags?: Array<string>;
   createdAt: number;
 }
 
