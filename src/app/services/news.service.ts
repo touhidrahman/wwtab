@@ -5,11 +5,11 @@ import { map, scan, tap, take } from 'rxjs/operators';
 
 export interface News {
   url: string;
-  headline?: string;
-  excerpt?: string;
+  title?: string;
+  description?: string;
+  image?: string;
   source?: string;
-  iconUrl?: string;
-  imageUrl?: string;
+  icon?: string;
   country?: string;
   tags?: Array<string>;
   createdAt?: number;
@@ -41,7 +41,7 @@ export class NewsService {
 
   init(options?: any) {
     this.query = {
-      limit: 2,
+      limit: 5,
       prepend: false,
       ...options
     };
