@@ -12,13 +12,13 @@ export interface News {
   icon?: string;
   country?: string;
   tags?: Array<string>;
-  createdAt?: number;
+  createdAt?: Date;
   doc?: QueryDocumentSnapshot<News>;
 }
 
 export interface QueryConfig {
-  field?: string; // field to orderBy
-  limit: number; // limit per query
+  orderBy?: string;
+  limit: number;
   prepend: boolean;
 }
 
@@ -43,11 +43,14 @@ export class NewsService {
     this.query = {
       limit: 5,
       prepend: false,
+      orderBy: 'createdAt',
       ...options
     };
 
     const firstBatch = this.afs.collection(this._collectionName, ref => {
-      return ref.limit(this.query.limit);
+      return ref
+        .limit(this.query.limit)
+        .orderBy(this.query.orderBy);
     });
 
     this.mapAndUpdate(firstBatch);
@@ -61,8 +64,13 @@ export class NewsService {
   more() {
     const cursor = this.getCursor();
 
+    if (!cursor) { return }
+
     const more = this.afs.collection(this._collectionName, ref => {
-      return ref.limit(this.query.limit).startAfter(cursor);
+      return ref
+        .limit(this.query.limit)
+        .orderBy(this.query.orderBy)
+        .startAfter(cursor);
     });
 
     this.mapAndUpdate(more);
@@ -72,28 +80,12 @@ export class NewsService {
     return this.data;
   }
 
-  // getNews(id: string): Observable<News> {
-  //   return this.newsColletion.doc<News>(id).valueChanges();
-  // }
-
-  // updateNews(id: string, news: News) {
-  //   return this.newsColletion.doc(id).update(news);
-  // }
-
-  // addNews(news: News) {
-  //   return this.newsColletion.add(news);
-  // }
-
-  // removeNews(id: string) {
-  //   return this.newsColletion.doc(id).delete();
-  // }
-
   private getCursor() {
     const current = this._data.value;
     if (current.length) {
       return this.query.prepend ? current[0].doc : current[current.length - 1].doc;
     }
-    return current[current.length - 1].doc;
+    return null;
   }
 
   private mapAndUpdate(collection: AngularFirestoreCollection<any>) {

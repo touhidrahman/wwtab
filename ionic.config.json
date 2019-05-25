@@ -1,5 +1,7 @@
 {
   "name": "wwtab",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

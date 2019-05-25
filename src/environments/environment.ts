@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyCBkLRDzYSwD05ci_sSttQ7AbwAaiWoHfc",
-    authDomain: "wwtabapp.firebaseapp.com",
-    databaseURL: "https://wwtabapp.firebaseio.com",
-    projectId: "wwtabapp",
-    storageBucket: "wwtabapp.appspot.com",
-    messagingSenderId: "862151947581",
-    appId: "1:862151947581:web:8c2d8d1ec38830ef"
+    apiKey: "AIzaSyAi7nEjTzgO7tHkkk4ZAQF1HEmMoICe6CQ",
+    authDomain: "dev-test-thd.firebaseapp.com",
+    databaseURL: "https://dev-test-thd.firebaseio.com",
+    projectId: "dev-test-thd",
+    storageBucket: "dev-test-thd.appspot.com",
+    messagingSenderId: "476194911587",
+    appId: "1:476194911587:web:2353d4f092e5c8c1"
   }
 };
 

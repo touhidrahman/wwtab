@@ -15,21 +15,31 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let news of newsService.data | async">
-    <img
-      src="{{ news.image }}"
-      alt="News image"
-      *ngIf="!!news.image"
-    >
+  <ng-container *ngFor="let news of newsService.data | async">
+    <ion-card>
+      <ion-img
+        src="{{ news.image }}"
+        alt="News image"
+        *ngIf="!!news.image"
+        (click)="openInBrowser(news.url)"
+      ></ion-img>
 
-    <ion-card-header>
-      <ion-card-title>{{ news.title }}</ion-card-title>
-      <ion-card-subtitle *ngIf="!!news.source">{{ news.source }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <div *ngIf="!!news.description">{{ news.description }}</div>
-    </ion-card-content>
-  </ion-card>
+      <ion-card-header (click)="openInBrowser(news.url)">
+        <ion-card-title>{{ news.title }}</ion-card-title>
+        <ion-card-subtitle *ngIf="!!news.source">{{ news.source }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="!!news.description">{{ news.description }}</div>
+
+        <ion-button
+          fill="outline"
+          (click)="openInBrowser(news.url)"
+        >
+          Read More
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 
   <ion-infinite-scroll
     threshold="100px"
