@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService, News } from '../services/news.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomePage implements OnInit {
   constructor(
     public newsService: NewsService,
     private iab: InAppBrowser,
+    private socialSharing: SocialSharing,
   ) { }
 
   ngOnInit() {
@@ -33,4 +35,8 @@ export class HomePage implements OnInit {
     this.iab.create(url, '_self');
   }
 
+  share(news: News) {
+    const message = `${news.title} - Shared via "What the World is Talking About Bangladesh (WWTAB)" App`;
+    this.socialSharing.share(message, news.title, news.image, news.url);
+  }
 }
