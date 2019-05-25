@@ -14,7 +14,6 @@ export class AdmobfreeService {
     this.platform.ready().then(() => {
       const bannerConfig: AdMobFreeBannerConfig = {
         id: environment.admobIds.Banner,
-        isTesting: !environment.production,
         autoShow: false,
       };
 
