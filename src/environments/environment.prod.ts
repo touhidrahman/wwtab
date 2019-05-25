@@ -8,5 +8,8 @@ export const environment = {
     storageBucket: "wwtabapp.appspot.com",
     messagingSenderId: "862151947581",
     appId: "1:862151947581:web:8c2d8d1ec38830ef"
+  },
+  admobIds: {
+    Banner: "ca-app-pub-5590786066325658/7382451486",
   }
 };

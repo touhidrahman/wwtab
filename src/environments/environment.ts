@@ -12,6 +12,15 @@ export const environment = {
     storageBucket: "dev-test-thd.appspot.com",
     messagingSenderId: "476194911587",
     appId: "1:476194911587:web:2353d4f092e5c8c1"
+  },
+  // Google test ad IDs
+  admobIds: {
+    Banner: "ca-app-pub-3940256099942544/6300978111",
+    Interstitial: "ca-app-pub-3940256099942544/1033173712",
+    Interstitial_Video: "ca-app-pub-3940256099942544/8691691433",
+    Rewarded_Video: "ca-app-pub-3940256099942544/5224354917",
+    Native_Advanced: "ca-app-pub-3940256099942544/2247696110",
+    Native_Advanced_Video: "ca-app-pub-3940256099942544/1044960115",
   }
 };
 
