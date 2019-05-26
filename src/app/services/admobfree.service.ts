@@ -15,6 +15,7 @@ export class AdmobfreeService {
       const bannerConfig: AdMobFreeBannerConfig = {
         id: environment.admobIds.Banner,
         autoShow: false,
+        overlap: true,
       };
 
       this.adMobFree.banner.config(bannerConfig);
