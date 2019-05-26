@@ -33,7 +33,11 @@ export class HomePage implements OnInit, AfterViewInit {
   }
 
   openInBrowser(url: string) {
-    this.iab.create(url, '_self');
+    this.iab.create(url, '_self', {
+      zoom: 'no',
+      hidenavigationbuttons: 'yes',
+      toolbarcolor: '#3880ff',
+    });
   }
 
   share(news: News) {

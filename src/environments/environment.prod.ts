@@ -11,5 +11,7 @@ export const environment = {
   },
   admobIds: {
     Banner: "ca-app-pub-5590786066325658/7382451486",
+    Interstitial: "ca-app-pub-5590786066325658/9404079789",
+    Rewarded_Video: "",
   }
 };

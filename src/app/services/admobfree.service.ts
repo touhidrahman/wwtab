@@ -32,4 +32,48 @@ export class AdmobfreeService {
     })
       .catch(e => console.log(e));
   }
+
+  loadInterstitial() {
+    this.platform
+      .ready()
+      .then(() => {
+        this.adMobFree.interstitial.config({
+          id: environment.admobIds.Interstitial,
+          autoShow: false,
+        });
+        this.adMobFree.interstitial.prepare();
+      })
+  }
+
+  showInterstitial() {
+    this.platform
+      .ready()
+      .then(() => {
+        this.adMobFree.interstitial.config({
+          id: environment.admobIds.Interstitial,
+          autoShow: false,
+        });
+        this.adMobFree.interstitial
+          .isReady()
+          .then(() => this.adMobFree.interstitial.show());
+      })
+  }
+
+  showRewardVideo() {
+    this.platform
+      .ready()
+      .then(() => {
+        this.adMobFree.rewardVideo.config({
+          id: environment.admobIds.Rewarded_Video,
+          autoShow: false,
+        });
+        this.adMobFree.rewardVideo
+          .prepare()
+          .then(() => {
+            this.adMobFree.rewardVideo
+              .isReady()
+              .then(() => this.adMobFree.rewardVideo.show());
+          });
+      });
+  }
 }
