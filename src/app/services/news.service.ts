@@ -18,8 +18,9 @@ export interface News {
 
 export interface QueryConfig {
   orderBy?: string;
-  limit: number;
-  prepend: boolean;
+  limit?: number;
+  prepend?: boolean;
+  reverse?: boolean;
 }
 
 @Injectable({
@@ -44,13 +45,14 @@ export class NewsService {
       limit: 5,
       prepend: false,
       orderBy: 'createdAt',
+      reverse: true, // createdAt desc = newest articles first
       ...options
     };
 
     const firstBatch = this.afs.collection(this._collectionName, ref => {
       return ref
         .limit(this.query.limit)
-        .orderBy(this.query.orderBy);
+        .orderBy(this.query.orderBy, this.query.reverse ? 'desc' : 'asc');
     });
 
     this.mapAndUpdate(firstBatch);
@@ -69,7 +71,7 @@ export class NewsService {
     const more = this.afs.collection(this._collectionName, ref => {
       return ref
         .limit(this.query.limit)
-        .orderBy(this.query.orderBy)
+        .orderBy(this.query.orderBy, this.query.reverse ? 'desc' : 'asc')
         .startAfter(cursor);
     });
 
