@@ -32,6 +32,12 @@ export class HomePage implements OnInit, AfterViewInit {
     })
   }
 
+  onClickReadMore(news: News) {
+    this.newsService.updateReadCount(news.id);
+
+    this.openInBrowser(news.url);
+  }
+
   openInBrowser(url: string) {
     this.iab.create(url, '_self', {
       zoom: 'no',

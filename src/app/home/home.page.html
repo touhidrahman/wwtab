@@ -21,19 +21,33 @@
         src="{{ news.image }}"
         alt="News image"
         *ngIf="!!news.image"
-        (click)="openInBrowser(news.url)"
+        (click)="onClickReadMore(news)"
       ></ion-img>
 
-      <ion-card-header (click)="openInBrowser(news.url)">
+      <ion-card-header (click)="onClickReadMore(news)">
         <ion-card-title>{{ news.title }}</ion-card-title>
         <ion-card-subtitle *ngIf="!!news.source">{{ news.source }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <div *ngIf="!!news.description">{{ news.description }}</div>
+        <p *ngIf="!!news.description">{{ news.description }}</p>
+
+        <div class="meta-row">
+          <ion-text color="medium">
+            <h5>Added on {{ news.createdAt | date:'d MMM y' }}</h5>
+          </ion-text>
+
+          <ion-icon
+            name="eye"
+            color="medium"
+          ></ion-icon>
+          <ion-label>
+            {{ news.readCount ? news.readCount : 0 }}
+          </ion-label>
+        </div>
 
         <ion-button
           fill="outline"
-          (click)="openInBrowser(news.url)"
+          (click)="onClickReadMore(news)"
         >
           Read More
         </ion-button>
@@ -44,6 +58,7 @@
           <ion-icon name="share"></ion-icon>
           Share
         </ion-button>
+
       </ion-card-content>
     </ion-card>
   </ng-container>

@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, scan, tap, take } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 export interface News {
+  id?: string;
   url: string;
   title?: string;
   description?: string;
@@ -13,6 +15,7 @@ export interface News {
   country?: string;
   tags?: Array<string>;
   createdAt?: Date;
+  readCount?: number;
   doc?: QueryDocumentSnapshot<News>;
 }
 
@@ -82,6 +85,11 @@ export class NewsService {
     return this.data;
   }
 
+  updateReadCount(id: string) {
+    const increment = firebase.firestore.FieldValue.increment(1);
+    this.afs.collection<News>(this._collectionName).doc(id).update({ readCount: increment });
+  }
+
   private getCursor() {
     const current = this._data.value;
     if (current.length) {
@@ -103,7 +111,12 @@ export class NewsService {
           const data = snapshot.payload.doc.data();
           const doc = snapshot.payload.doc;
           const id = snapshot.payload.doc.id;
-          return { id, ...data, doc };
+          return {
+            id,
+            doc,
+            ...data,
+            createdAt: new Date(data.createdAt.seconds * 1000),
+          };
         });
 
         // if prepending, reverse the batch order
