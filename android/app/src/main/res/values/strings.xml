@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">wwtab</string>
+    <string name="title_activity_main">wwtab</string>
+    <string name="package_name">com.touhidrahman.app.wwtab</string>
+    <string name="fileprovider_authority">com.touhidrahman.app.wwtab.fileprovider</string>
+    <string name="custom_url_scheme">com.touhidrahman.app.wwtab</string>
+</resources>

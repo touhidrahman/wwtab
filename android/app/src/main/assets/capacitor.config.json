@@ -1,0 +1,7 @@
+{
+  "appId": "com.touhidrahman.app.wwtab",
+  "appName": "wwtab",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
