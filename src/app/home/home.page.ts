@@ -33,13 +33,13 @@ export class HomePage implements OnInit, AfterViewInit {
 
     // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived', (notification: PushNotification) => {
-      alert(JSON.stringify(notification));
+      console.log('Push notification received: ' + JSON.stringify(notification));
     });
 
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed',
       (notification: PushNotificationActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
+        console.log('Push action performed: ' + JSON.stringify(notification));
       });
   }
 
