@@ -10,6 +10,7 @@ export const environment = {
     appId: "1:862151947581:web:8c2d8d1ec38830ef"
   },
   admobIds: {
+    AppId: "ca-app-pub-5590786066325658~5059540478",
     Banner: "ca-app-pub-5590786066325658/7382451486",
     Interstitial: "ca-app-pub-5590786066325658/9404079789",
     Rewarded_Video: "",
