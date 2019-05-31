@@ -1,35 +1,46 @@
 import { Injectable } from '@angular/core';
-import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
 import { Platform } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 
+import { Plugins } from '@capacitor/core';
+import { AdOptions, AdSize, AdPosition } from 'capacitor-admob';
+
+const { AdMob } = Plugins;
+
+/**
+ * https://github.com/rahadur/capacitor-admob
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AdmobfreeService {
 
-  constructor(private platform: Platform, private adMobFree: AdMobFree) { }
+  bannerOptions: AdOptions = {
+    adId: environment.admobIds.Banner,
+    adSize: AdSize.BANNER,
+    position: AdPosition.BOTTOM_CENTER,
+  }
+
+  constructor(private platform: Platform) {
+    AdMob.initialize(environment.admobIds.AppId);
+  }
 
   showBanner() {
     this.platform.ready().then(() => {
-      const bannerConfig: AdMobFreeBannerConfig = {
-        id: environment.admobIds.Banner,
-        autoShow: false,
-        overlap: true,
-      };
+      AdMob.showBanner(this.bannerOptions)
+        .then(value => console.log(value), err => console.error(err));
 
-      this.adMobFree.banner.config(bannerConfig);
-      this.adMobFree.banner.prepare().then(() => {
-        this.adMobFree.banner.show();
-      })
-        .catch(e => console.log(e))
+      // Subscibe Banner Event Listener
+      AdMob.addListener('onAdLoaded', (info: boolean) => {
+        console.log("Banner Ad Loaded");
+      });
     })
       .then(e => console.log(e));
   }
 
   hideBannerr() {
     this.platform.ready().then(() => {
-      this.adMobFree.banner.hide().catch(e => console.log(e));
+      // this.adMobFree.banner.hide().catch(e => console.log(e));
     })
       .catch(e => console.log(e));
   }
@@ -38,11 +49,7 @@ export class AdmobfreeService {
     this.platform
       .ready()
       .then(() => {
-        this.adMobFree.interstitial.config({
-          id: environment.admobIds.Interstitial,
-          autoShow: false,
-        });
-        this.adMobFree.interstitial.prepare();
+
       })
   }
 
@@ -50,13 +57,7 @@ export class AdmobfreeService {
     this.platform
       .ready()
       .then(() => {
-        this.adMobFree.interstitial.config({
-          id: environment.admobIds.Interstitial,
-          autoShow: false,
-        });
-        this.adMobFree.interstitial
-          .isReady()
-          .then(() => this.adMobFree.interstitial.show());
+
       })
   }
 
@@ -64,17 +65,7 @@ export class AdmobfreeService {
     this.platform
       .ready()
       .then(() => {
-        this.adMobFree.rewardVideo.config({
-          id: environment.admobIds.Rewarded_Video,
-          autoShow: false,
-        });
-        this.adMobFree.rewardVideo
-          .prepare()
-          .then(() => {
-            this.adMobFree.rewardVideo
-              .isReady()
-              .then(() => this.adMobFree.rewardVideo.show());
-          });
+
       });
   }
 }

@@ -15,6 +15,7 @@ export const environment = {
   },
   // Google test ad IDs
   admobIds: {
+    AppId: "",
     Banner: "ca-app-pub-3940256099942544/6300978111",
     Interstitial: "ca-app-pub-3940256099942544/1033173712",
     Interstitial_Video: "ca-app-pub-3940256099942544/8691691433",

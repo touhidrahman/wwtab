@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NewsService, News } from '../services/news.service';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { AdmobfreeService } from '../services/admobfree.service';
+import { Plugins } from '@capacitor/core';
+
+const { Browser, Share } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,6 @@ export class HomePage implements OnInit, AfterViewInit {
 
   constructor(
     public newsService: NewsService,
-    private iab: InAppBrowser,
-    private socialSharing: SocialSharing,
     private admobService: AdmobfreeService,
   ) { }
 
@@ -32,23 +31,19 @@ export class HomePage implements OnInit, AfterViewInit {
     })
   }
 
-  onClickReadMore(news: News) {
+  async onClickReadMore(news: News) {
     this.newsService.updateReadCount(news.id);
 
-    this.openInBrowser(news.url);
+    await Browser.open({ url: news.url, toolbarColor: '#3880ff' });
   }
 
-  openInBrowser(url: string) {
-    this.iab.create(url, '_self', {
-      zoom: 'no',
-      hidenavigationbuttons: 'yes',
-      toolbarcolor: '#3880ff',
+  async share(news: News) {
+    await Share.share({
+      title: `${news.title}`,
+      text: `${news.title} - Shared via "What the World is Talking About Bangladesh (WWTAB)" App`,
+      url: news.url,
+      dialogTitle: 'Share news',
     });
-  }
-
-  share(news: News) {
-    const message = `${news.title} - Shared via "What the World is Talking About Bangladesh (WWTAB)" App`;
-    this.socialSharing.share(message, news.title, news.image, news.url);
   }
 
   ngAfterViewInit() {
