@@ -1,9 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NewsService, News } from '../services/news.service';
 import { AdmobfreeService } from '../services/admobfree.service';
-import { Plugins } from '@capacitor/core';
+import {
+  Plugins,
+  PushNotification,
+  PushNotificationToken,
+  PushNotificationActionPerformed,
+} from '@capacitor/core';
 
-const { Browser, Share } = Plugins;
+const { Browser, Share, PushNotifications } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -19,6 +24,23 @@ export class HomePage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.newsService.init({ prepend: false });
+
+    // push notification init
+    PushNotifications.register();
+    PushNotifications.addListener('registration', (token: PushNotificationToken) => {
+      localStorage.setItem('token', token.value);
+    });
+
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener('pushNotificationReceived', (notification: PushNotification) => {
+      alert(JSON.stringify(notification));
+    });
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener('pushNotificationActionPerformed',
+      (notification: PushNotificationActionPerformed) => {
+        alert('Push action performed: ' + JSON.stringify(notification));
+      });
   }
 
   loadNews(event): void {
