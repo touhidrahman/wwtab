@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "862151947581",
+    "firebase_url": "https://wwtabapp.firebaseio.com",
+    "project_id": "wwtabapp",
+    "storage_bucket": "wwtabapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862151947581:android:160146b723950bab",
+        "android_client_info": {
+          "package_name": "com.touhidrahman.app.wwtab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862151947581-m59chclu6gsmjn76uvbcf9pkd1ssedfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC45BSVu0q6bBqS6jAaWgni-Gd-c7oBNk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862151947581-m59chclu6gsmjn76uvbcf9pkd1ssedfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5590786066325658~5059540478"
+    }
+  ],
+  "configuration_version": "1"
+}
