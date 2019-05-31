@@ -12,8 +12,7 @@
 
         <!--<meta-data-->
             <!--android:name="com.google.android.gms.ads.APPLICATION_ID"-->
-            <!--android:value="ca-app-pub-5590786066325658~5059540478"-->
-            <!--tools:replace="android:value" />-->
+            <!--android:value="ca-app-pub-5590786066325658~5059540478" />-->
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"

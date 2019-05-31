@@ -1,7 +1,6 @@
 {
   "name": "wwtab",
   "integrations": {
-    "cordova": {},
     "capacitor": {}
   },
   "type": "angular"

@@ -17,7 +17,7 @@ export class AdmobfreeService {
 
   bannerOptions: AdOptions = {
     adId: environment.admobIds.Banner,
-    adSize: AdSize.BANNER,
+    adSize: AdSize.FLUID,
     position: AdPosition.BOTTOM_CENTER,
   }
 
