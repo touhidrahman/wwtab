@@ -1,6 +1,6 @@
 {
   "appId": "com.touhidrahman.app.wwtab",
-  "appName": "WWTAB",
+  "appName": "World News on Bangladesh",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www"

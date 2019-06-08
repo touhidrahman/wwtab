@@ -62,7 +62,7 @@ export class HomePage implements OnInit, AfterViewInit {
   async share(news: News) {
     await Share.share({
       title: `${news.title}`,
-      text: `${news.title} - Shared via "What the World is Talking About Bangladesh (WWTAB)" App`,
+      text: `${news.title} - Shared via "World News on Bangladesh" App`,
       url: news.url,
       dialogTitle: 'Share news',
     });
